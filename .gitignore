@@ -1,5 +1,8 @@
 journal.pkl
 tags
 __pychache__/
+*.pyc
+*~
+*.swp
 .DS_Store
 test.txt
