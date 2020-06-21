@@ -5,3 +5,5 @@ __pychache__/
 *~
 *.swp
 .DS_Store
+git-push.sh
+run.sh
