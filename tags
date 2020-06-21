@@ -1,0 +1,28 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+EXIT_JOURNAL	main.py	/^EXIT_JOURNAL = False$/;"	v
+Entry	main.py	/^class Entry():$/;"	c
+JRNL_FILENAME	main.py	/^JRNL_FILENAME = 'journal.pkl'$/;"	v
+Journal	main.py	/^class Journal():$/;"	c
+SAVE_ON_EXIT	main.py	/^SAVE_ON_EXIT = True$/;"	v
+__init__	main.py	/^    def __init__(self):$/;"	m	class:Journal
+__init__	main.py	/^    def __init__(self, text):$/;"	m	class:Entry
+add_entry	main.py	/^    def add_entry(self) -> None:$/;"	m	class:Journal
+datetime	main.py	/^from datetime import datetime$/;"	i
+find_substr	main.py	/^    def find_substr(self, search_str : str) -> [int]:$/;"	m	class:Journal
+os	main.py	/^import os.path$/;"	i
+parse_command	main.py	/^def parse_command(c : str, jn : Journal) -> None:$/;"	f
+path	main.py	/^import os.path$/;"	i
+pickle	main.py	/^import pickle$/;"	i
+random_bro	randomm.py	/^def random_bro():$/;"	f
+randomm	main.py	/^import randomm$/;"	i
+run_journal	main.py	/^def run_journal() -> None:$/;"	f
+search	main.py	/^from re import search$/;"	i
+show_entry	main.py	/^    def show_entry(self, idx) -> None:$/;"	m	class:Journal
+show_journal	main.py	/^    def show_journal(self) -> None:$/;"	m	class:Journal
+time	main.py	/^import time$/;"	i
+yes_no	main.py	/^def yes_no(question : str) -> bool:$/;"	f

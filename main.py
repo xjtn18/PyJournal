@@ -1,10 +1,10 @@
 # main script to start the journal
-
 import os.path
 import pickle
 import time
 from datetime import datetime
-
+from re import search
+import randomm
 
 # Constants
 JRNL_FILENAME = 'journal.pkl'
@@ -32,11 +32,24 @@ class Journal():
             print(e.date_time.strftime("%m/%d/%Y %H:%M"))
             print(e.text + "\n")
 
+    def show_entry(self, idx) -> None:
+        e = self.entries[idx]
+        print(e.date_time.strftime("%m/%d/%Y %H:%M"))
+        print(e.text + "\n")
+
+    def find_substr(self, search_str : str) -> [int]:
+        indexes = [] # stores the indexes of the journal entries that contain the search string
+        for n in range(len(self.entries)):
+            e = self.entries[n]
+            if search(search_str, e.text): # if this entries text contains the search string
+                indexes.append(n)
+        for i in indexes:
+            self.show_entry(i)
+
 
 def yes_no(question : str) -> bool:
     while True:
-        print(question, "(y/n)", end=" ")
-        response = input()
+        response = input(question + " (y/n) ")
         if response is "y":
             return True
         elif response is "n":
@@ -57,6 +70,9 @@ def parse_command(c : str, jn : Journal) -> None:
         jn.add_entry()
     elif c is "s":
         jn.show_journal()
+    elif c is "f":
+        search_str = input("Enter search phrase: ")
+        jn.find_substr(search_str)
     elif c is "h":
         print("\nCommands:", "'q' to close journal", "'s' to show journal", "'w' to add to journal", sep = "\n")
     else: #invalid command
@@ -78,7 +94,7 @@ def run_journal() -> None:
 
     # main command loop
     while not EXIT_JOURNAL:
-        command = input()
+        command = input("~")
         parse_command(command, jn)
 
 
@@ -95,5 +111,5 @@ def run_journal() -> None:
 if __name__ == "__main__":
     run_journal()
 
-
+    randomm.random_bro()
 
