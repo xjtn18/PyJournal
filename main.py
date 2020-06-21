@@ -1,10 +1,11 @@
 # main script to start the journal
+from os import system, name
 import os.path
 import pickle
 import time
 from datetime import datetime
 from re import search
-import randomm
+import helper
 
 # Constants
 JRNL_FILENAME = 'journal.pkl'
@@ -46,6 +47,12 @@ class Journal():
         for i in indexes:
             self.show_entry(i)
 
+def screen_clear():
+    if name == 'nt':
+        _ = system('cls')
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
 
 def yes_no(question : str) -> bool:
     while True:
@@ -75,12 +82,13 @@ def parse_command(c : str, jn : Journal) -> None:
         jn.find_substr(search_str)
     elif c is "h":
         print("\nCommands:", "'q' to close journal", "'s' to show journal", "'w' to add to journal", sep = "\n")
+        print("")
     else: #invalid command
         print("not a valid command; type 'h' for list of commands")
         time.sleep(0.75)
 
 
-def run_journal() -> None:
+def command_loop() -> None:
 
     # load journal if it exists, else create it
     if os.path.isfile(JRNL_FILENAME):
@@ -95,6 +103,7 @@ def run_journal() -> None:
     # main command loop
     while not EXIT_JOURNAL:
         command = input("~")
+        screen_clear()
         parse_command(command, jn)
 
 
@@ -109,7 +118,6 @@ def run_journal() -> None:
 
 
 if __name__ == "__main__":
-    run_journal()
+    command_loop()
 
-    randomm.random_bro()
 
