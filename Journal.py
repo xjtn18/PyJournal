@@ -1,7 +1,7 @@
 from datetime import datetime
 from re import search
 from helper import *
-from PJConstants import *
+from Constants import *
 
 
 class Entry():
@@ -34,9 +34,11 @@ class Journal():
         for i in indexes:
             self.show_entry(i)
 
-    def get_entries_with(self, search_str : str) -> [int]:
+    def get_entries_with(self, search_str : str, whole_word = False) -> [int]:
         indexes = [] # stores the indexes of the journal entries that contain the search string
-        search_string = add_escapes(search_str)
+        search_string = add_escapes(search_str) # add the escape sequences in case keyword contains regex sensitive symbols
+        if whole_word:
+            search_string = ' ' + search_string + ' ' # add white space at front and end of keyword
         for n in range(len(self.entries)):
             e = self.entries[n]
             if search(search_string, e.text): # if this entries text contains the search string

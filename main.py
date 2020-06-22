@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 from re import search
 import helper
-from PJConstants import *
+from Constants import *
 from Journal import *
 
 
@@ -50,7 +50,7 @@ def parse_command(c : str, jn : Journal) -> None:
 
     elif c is "f":
         search_str = input("Enter search phrase: ")
-        indexes = jn.get_entries_with(search_str)
+        indexes = jn.get_entries_with(search_str, whole_word = yes_no("Whole word only?"))
         if indexes: # matches found
             jn.show_entries(indexes)
         else:
@@ -69,7 +69,6 @@ def parse_command(c : str, jn : Journal) -> None:
 
 
 def command_loop() -> None:
-
     # load journal if it exists, else create it
     if os.path.isfile(JRNL_FILENAME):
         jn = pickle.load(open(JRNL_FILENAME, 'rb'))
@@ -95,7 +94,6 @@ def command_loop() -> None:
 
     pause(PAUSE_TIME)
     
-
 
 
 if __name__ == "__main__":
