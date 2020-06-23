@@ -94,7 +94,6 @@ def command_loop() -> None:
     else:
         print("Changes discarded.")
 
-    pause(PAUSE_TIME)
     
 
 
