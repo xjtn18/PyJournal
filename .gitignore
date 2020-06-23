@@ -6,3 +6,4 @@ __pychache__/
 *.swp
 .DS_Store
 git-push.sh
+pickle-migrate.py

@@ -1,4 +1,4 @@
-from Constants import *
+from constants import *
 
 def add_escapes(s : str) -> str:
     res = ''

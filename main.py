@@ -6,8 +6,8 @@ import time
 from datetime import datetime
 from re import search
 import helper
-from Constants import *
-from Journal import *
+from constants import *
+from journal import *
 
 
 def pause(sec : float):
@@ -25,13 +25,11 @@ def screen_clear():
 def yes_no(question : str) -> bool:
     while True:
         response = input(question + " (y/n) ")
-        if response is "y":
-            return True
-        elif response is "n":
-            return False
-        else:
+        if response not in 'yn':
             print("invalid: 'y' or 'n'")
             pause(PAUSE_TIME)
+            continue
+        return response == 'y'
 
 
 def parse_command(c : str, jn : Journal) -> None:
@@ -56,6 +54,10 @@ def parse_command(c : str, jn : Journal) -> None:
         else:
             print("No matches found")
             pause(PAUSE_TIME)
+    
+    elif c is "d":
+        entry_id = int(input("Enter the ID of the entry you want to remove: "))
+        jn.remove_entry(entry_id)
 
     elif c is "h":
         print("Commands:")

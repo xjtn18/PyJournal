@@ -1,7 +1,7 @@
 from datetime import datetime
 from re import search
 from helper import *
-from Constants import *
+from constants import *
 
 
 class Entry():
@@ -44,5 +44,13 @@ class Journal():
             if search(search_string, e.text): # if this entries text contains the search string
                 indexes.append(n)
         return indexes
+
+    def remove_entry(self, entry_id : int):
+        # removes the entry with the given index (input expected to be 1-indexed) from the journal
+        if 0 < entry_id <= len(self.entries): # if the ID is valid
+            del self.entries[entry_id - 1]
+            print(f"Deleted journal entry {entry_id}")
+        else:
+            print("ID invalid")
 
 
