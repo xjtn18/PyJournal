@@ -1,36 +1,6 @@
 # main script to start the journal
-from os import system, name
-import os.path
-import pickle
-import time
-from datetime import datetime
-from re import search
-import helper
-from constants import *
 from journal import *
-
-
-def pause(sec : float):
-    time.sleep(sec)
-
-
-def screen_clear():
-    if name == 'nt':
-        _ = system('cls')
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
-
-
-def yes_no(question : str) -> bool:
-    while True:
-        response = input(question + " (y/n) ")
-        if response not in 'yn':
-            print("invalid: 'y' or 'n'")
-            pause(PAUSE_TIME)
-            continue
-        return response == 'y'
-
+from constants import *
 
 def parse_command(c : str, jn : Journal) -> None:
     # check what the command is and if its valid
@@ -56,8 +26,12 @@ def parse_command(c : str, jn : Journal) -> None:
             pause(PAUSE_TIME)
     
     elif c is "d":
-        entry_id = int(input("Enter the ID of the entry you want to remove: "))
-        jn.remove_entry(entry_id)
+        try:
+            entry_id = int(input("Enter the ID of the entry you want to remove: "))
+            jn.remove_entry(entry_id)
+        except ValueError:
+            print("Not a valid integer ID")
+            pause(PAUSE_TIME)
 
     elif c is "h":
         print("Commands:")
@@ -71,14 +45,6 @@ def parse_command(c : str, jn : Journal) -> None:
 
 
 def command_loop() -> None:
-    # load journal if it exists, else create it
-    if os.path.isfile(JRNL_FILENAME):
-        jn = pickle.load(open(JRNL_FILENAME, 'rb'))
-        print("Journal loaded.")
-    else: # first time creating the journal
-        jn = Journal()
-        print("No journal found. Fresh journal created.")
-
     print("Type 'h' for list of commands\n")
 
     # main command loop
@@ -98,6 +64,14 @@ def command_loop() -> None:
 
 
 if __name__ == "__main__":
-    command_loop()
+    # load journal if it exists, else create it
+    if os.path.isfile(JRNL_FILENAME):
+        jn = pickle.load(open(JRNL_FILENAME, 'rb'))
+        print("Journal loaded.")
+    else: # first time creating the journal
+        jn = Journal()
+        print("No journal found. Fresh journal created.")
+
+    command_loop() # run the command loop
 
 

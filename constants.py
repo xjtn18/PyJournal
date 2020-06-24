@@ -5,9 +5,9 @@ EXIT_JOURNAL = False
 SAVE_ON_EXIT = True
 SYMBOLS = '{}()[].,:;+-/|<>=~?!@#$%^&*'
 COMMAND_INFO = (\
-    "'q' to close journal",\
     "'s' to show journal",\
     "'w' to add to journal",\
     "'f' to search for a keyword",\
-    "'d' to delete an entry"\
+    "'d' to delete an entry",\
+    "'q' to close journal",\
     )

@@ -37,8 +37,7 @@ class Journal():
     def get_entries_with(self, search_str : str, whole_word = False) -> [int]:
         indexes = [] # stores the indexes of the journal entries that contain the search string
         search_string = add_escapes(search_str) # add the escape sequences in case keyword contains regex sensitive symbols
-        if whole_word:
-            search_string = ' ' + search_string + ' ' # add white space at front and end of keyword
+        search_string = ' ' + search_string + ' ' if whole_word else search_string # add white space at front and end of keyword
         for n in range(len(self.entries)):
             e = self.entries[n]
             if search(search_string, e.text): # if this entries text contains the search string
@@ -52,5 +51,8 @@ class Journal():
             print(f"Deleted journal entry {entry_id}")
         else:
             print("ID invalid")
+        pause(PAUSE_TIME)
+
+
 
 
